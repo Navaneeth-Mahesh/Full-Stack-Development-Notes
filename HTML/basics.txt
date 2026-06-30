@@ -2,6 +2,7 @@
 
 HTML stands for **HyperText Markup Language**.
 
+* HTML was invented by Sir Tim Berners-Lee
 * HTML is used to create web pages.
 * It defines the structure of a web page.
 * HTML is made up of **elements**.
@@ -124,5 +125,6 @@ A basic HTML page looks like this:
 * `<body>` contains all the visible content.
 * `<h1>` displays a heading.
 * `<p>` displays a paragraph.
-
+* `<!---->` used for comments. 
 HTML is the foundation of every website. It provides the structure, while CSS is used for styling and JavaScript is used to add interactivity.
+
