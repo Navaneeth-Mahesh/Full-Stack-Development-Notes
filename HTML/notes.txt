@@ -1,0 +1,128 @@
+# HTML (HyperText Markup Language)
+
+HTML stands for **HyperText Markup Language**.
+
+* HTML is used to create web pages.
+* It defines the structure of a web page.
+* HTML is made up of **elements**.
+* These elements tell the browser how to display content.
+* Elements can represent headings, paragraphs, links, images, tables, and more.
+
+## Basic HTML Example
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page Title</title>
+</head>
+
+<body>
+    <h1>My First Heading</h1>
+    <p>My first paragraph.</p>
+</body>
+
+<script>
+    // JavaScript code can be written here
+</script>
+
+</html>
+
+## How to Create an HTML File
+
+1. Open VS Code.
+2. Create a new file.
+3. Save the file with the **.html** extension.
+
+Example:
+
+```text
+index.html
+```
+
+Any file ending with `.html` is treated as an HTML file.
+
+---
+
+# HTML Elements
+
+HTML is made up of different elements. Each element has a specific purpose.
+
+## Heading Tags
+
+HTML provides six heading tags.
+
+```html
+            <h1>This is Heading 1</h1>
+            <h2>This is Heading 2</h2>
+            <h3>This is Heading 3</h3>
+            <h4>This is Heading 4</h4>
+            <h5>This is Heading 5</h5>
+            <h6>This is Heading 6</h6>
+```
+
+* `<h1>` is the largest heading.
+* `<h6>` is the smallest heading.
+
+## Paragraph Tag
+
+The `<p>` tag is used to write paragraphs.
+
+```html
+            <p>This is a paragraph.</p>
+```
+
+## Line Break Tag
+
+The `<br>` tag is used to move content to the next line.
+
+```html
+            Hello<br>World
+```
+
+* `<br>` is an **empty element**.
+* It does not have a closing tag.
+* It does not contain any content.
+
+---
+
+# Running HTML Code
+
+After writing your HTML code:
+
+1. Install the **Live Server** extension in VS Code.
+2. Open your HTML file.
+3. Right-click inside the file.
+4. Select **Open with Live Server**.
+5. Your webpage will open in your default web browser.
+
+---
+
+# HTML Structure
+
+A basic HTML page looks like this:
+
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Page Title</title>
+    </head>
+    <body>
+        <h1>This is a Heading</h1>
+        <p>This is a paragraph.</p>
+        <p>This is another paragraph.</p>
+    </body>
+</html>
+```
+
+## Structure Explanation
+
+* `<!DOCTYPE html>` tells the browser that the document is an HTML5 document.
+* `<html>` is the root element of the webpage.
+* `<head>` contains information about the webpage.
+* `<title>` sets the page title shown in the browser tab.
+* `<body>` contains all the visible content.
+* `<h1>` displays a heading.
+* `<p>` displays a paragraph.
+
+HTML is the foundation of every website. It provides the structure, while CSS is used for styling and JavaScript is used to add interactivity.
