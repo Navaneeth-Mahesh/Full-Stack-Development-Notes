@@ -2,74 +2,238 @@
 <html lang="en">
 
 <head>
-    <title>HTML Practice</title>
+    <!-- Information about the webpage -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Beginner Practice</title>
 </head>
 
 <body>
 
-    <!-- Heading -->
-    <h1>HTML Practice Program</h1>
+    <!-- ============================= -->
+    <!-- HEADINGS -->
+    <!-- ============================= -->
 
-    <!-- Paragraph -->
-    <p title="This is a paragraph.">
-        Welcome to HTML learning.
+    <h1>Main Heading (h1)</h1>
+    <h2>Heading 2</h2>
+    <h3>Heading 3</h3>
+    <h4>Heading 4</h4>
+    <h5>Heading 5</h5>
+    <h6>Heading 6</h6>
+
+    <hr>
+
+    <!-- ============================= -->
+    <!-- PARAGRAPHS -->
+    <!-- ============================= -->
+
+    <p>This is a normal paragraph.</p>
+
+    <p title="This message appears when you hover the mouse.">
+        Hover your mouse over this paragraph.
     </p>
 
-    <!-- Link -->
-    <a href="https://www.google.com">Visit Google</a>
+    <hr>
+
+    <!-- ============================= -->
+    <!-- LINE BREAK -->
+    <!-- ============================= -->
+
+    <p>
+        First Line <br>
+        Second Line <br>
+        Third Line
+    </p>
+
+    <hr>
+
+    <!-- ============================= -->
+    <!-- LINKS -->
+    <!-- ============================= -->
+
+    <!-- Opens in same tab -->
+    <a href="https://www.google.com">
+        Open Google
+    </a>
 
     <br><br>
 
-    <!-- Image -->
-    <img src="images/html.png" alt="HTML Logo" width="200" height="200">
+    <!-- Opens in new tab -->
+    <a href="https://www.youtube.com" target="_blank">
+        Open YouTube
+    </a>
+
+    <br><br>
+
+    <!-- Email Link -->
+    <a href="mailto:example@gmail.com">
+        Send Email
+    </a>
+
+    <br><br>
+
+    <!-- Phone Link -->
+    <a href="tel:+919999999999">
+        Call Us
+    </a>
 
     <hr>
-    <!-- Text Formatting -->
-    <p>
-        <b>Bold</b><br>
-        <strong>Important</strong><br>
-        <i>Italic</i><br>
-        <em>Emphasized</em><br>
-        <mark>Highlighted</mark><br>
-        <small>Small Text</small><br>
-        <del>Deleted Text</del><br>
-        <ins>Inserted Text</ins><br>
-        H<sub>2</sub>O<br>
-        x<sup>2</sup>
-    </p>
+
+    <!-- ============================= -->
+    <!-- IMAGES -->
+    <!-- ============================= -->
+
+    <img
+        src="images/html.png"
+        alt="HTML Logo"
+        width="200"
+        height="200">
+
+    <br><br>
+
+    <!-- Image as a Link -->
+    <a href="https://developer.mozilla.org" target="_blank">
+        <img
+            src="images/html.png"
+            alt="Clickable HTML Logo"
+            width="100">
+    </a>
+
     <hr>
 
-    <!-- Preformatted Text -->
+    <!-- ============================= -->
+    <!-- TEXT FORMATTING -->
+    <!-- ============================= -->
+
+    <p><b>Bold Text</b></p>
+
+    <p><strong>Important Text</strong></p>
+
+    <p><i>Italic Text</i></p>
+
+    <p><em>Emphasized Text</em></p>
+
+    <p><mark>Highlighted Text</mark></p>
+
+    <p><small>Small Text</small></p>
+
+    <p><del>Old Price ₹999</del></p>
+
+    <p><ins>New Price ₹799</ins></p>
+
+    <p>Water Formula : H<sub>2</sub>O</p>
+
+    <p>Math Formula : x<sup>2</sup></p>
+
+    <hr>
+
+    <!-- ============================= -->
+    <!-- PREFORMATTED TEXT -->
+    <!-- ============================= -->
+
     <pre>
-        Name : Navaneeth
-        Course : HTML
-        Editor : VS Code
+Name    : Navaneeth
+Course  : HTML
+Editor  : VS Code
     </pre>
+
     <hr>
-    <!-- Quotation Elements -->
+
+    <!-- ============================= -->
+    <!-- QUOTATION ELEMENTS -->
+    <!-- ============================= -->
+
+    <!-- Long Quote -->
     <blockquote cite="https://www.w3schools.com">
         HTML is the standard markup language for creating web pages.
     </blockquote>
+
+    <!-- Short Quote -->
     <p>
-        W3Schools says:
-        <q>Learning HTML is easy.</q>
+        W3Schools says,
+        <q>Learning HTML is fun.</q>
     </p>
+
+    <!-- Abbreviation -->
     <p>
-        <abbr title="HyperText Markup Language">HTML</abbr>
-        is the foundation of web development.
+        <abbr title="HyperText Markup Language">
+            HTML
+        </abbr>
+        is used to build webpages.
     </p>
+
+    <!-- Address -->
     <address>
-        Navaneeth<br>
-        Andhra Pradesh, India<br>
-        Email: nav@example.com
+        Navaneeth <br>
+        Andhra Pradesh <br>
+        India
     </address>
+
+    <!-- Citation -->
     <p>
-        My favorite book is <cite>Atomic Habits</cite>.
+        My favorite book is
+        <cite>Atomic Habits</cite>.
     </p>
+
+    <!-- Bidirectional Override -->
     <p>
-        <bdo dir="rtl">Hello World</bdo>
+        <bdo dir="rtl">
+            Hello World
+        </bdo>
     </p>
+
+    <hr>
+
+    <!-- ============================= -->
+    <!-- COLORS USING INLINE CSS -->
+    <!-- ============================= -->
+
+    <!-- Background Color -->
+    <h2 style="background-color: DodgerBlue;">
+        Background Color
+    </h2>
+
+    <!-- Text Color -->
+    <p style="color:red;">
+        This text is red.
+    </p>
+
+    <!-- Border -->
+    <h2 style="border:2px solid Tomato;">
+        Border Example
+    </h2>
+
+    <!-- Border Color -->
+    <p style="border:2px solid MediumSeaGreen;">
+        Green Border
+    </p>
+
+    <hr>
+
+    <!-- ============================= -->
+    <!-- BUTTON -->
+    <!-- ============================= -->
+
+    <button>
+        Click Me
+    </button>
+
+    <br><br>
+
+    <!-- Button with JavaScript -->
+    <button onclick="document.location='https://www.google.com'">
+        Go to Google
+    </button>
+
+    <hr>
+
+    <!-- ============================= -->
+    <!-- COMMENTS -->
+    <!-- ============================= -->
+
+    <!-- This is an HTML comment.
+         Comments are ignored by the browser. -->
+
 </body>
 
 </html>
-```
