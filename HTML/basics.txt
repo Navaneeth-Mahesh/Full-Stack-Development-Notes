@@ -116,15 +116,48 @@ A basic HTML page looks like this:
 </html>
 ```
 
-## Structure Explanation
+Structure Explanation
 
-* `<!DOCTYPE html>` tells the browser that the document is an HTML5 document.
-* `<html>` is the root element of the webpage.
-* `<head>` contains information about the webpage.
-* `<title>` sets the page title shown in the browser tab.
-* `<body>` contains all the visible content.
-* `<h1>` displays a heading.
-* `<p>` displays a paragraph.
-* `<!---->` used for comments. 
+    <!DOCTYPE html> – Declares the document as HTML5.
+    <html> – Root element of the webpage.
+    <head> – Contains page information.
+    <title> – Sets the browser tab title.
+    <body> – Contains all visible content.
+    <!-- --> – Used for comments.
+
+Common Tags
+
+    <h1> to <h6> – Heading tags.
+    <p> – Paragraph.
+    <a href="URL">Text</a> – Creates a hyperlink.
+    <img src="image.jpg" alt="Image"> – Displays an image.
+    style="" – Adds inline CSS.
+    lang="en" – Specifies the webpage language.
+    title="" – Displays a tooltip on hover.
+    <hr> – Horizontal line.
+    <br> – Line break.
+    <pre> – Preserves spaces and line breaks.
+
+Text Formatting
+
+    <b> – Bold
+    <strong> – Important text
+    <i> – Italic
+    <em> – Emphasized
+    <mark> – Highlighted
+    <small> – Smaller text
+    <del> – Deleted text
+    <ins> – Inserted text
+    <sub> – Subscript
+    <sup> – Superscript
+
+Quotation and Citation Elements
+    <blockquote> - element defines a section that is quoted from another source.
+    <q> - insert quotation marks around the quotation.
+    <abbr> - tag defines an abbreviation or an acronym, like "HTML", "CSS", "Mr.", "Dr.", "ASAP", "ATM".
+    <address> - tag defines the contact information for the author/owner of a document or an article.
+    <cite> - tag defines the title of a creative work (e.g. a book, a poem, a song, a movie, a painting, a sculpture, etc.).
+    <bdo> -Bi Directional Override. 
+
 HTML is the foundation of every website. It provides the structure, while CSS is used for styling and JavaScript is used to add interactivity.
 
