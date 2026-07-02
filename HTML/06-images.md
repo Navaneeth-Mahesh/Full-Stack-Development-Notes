@@ -134,6 +134,112 @@ GIF images can also be displayed using the `<img>` element.
 
 ---
 
+# Background Images
+
+A background image is displayed behind the content of an element. It is usually added using CSS.
+
+### Example
+
+```html
+<body style="background-image: url('background.jpg');">
+
+    <h1>Welcome</h1>
+
+</body>
+```
+
+You can also apply a background image to any HTML element.
+
+```html
+<div
+    style="background-image: url('background.jpg');
+           width:300px;
+           height:200px;">
+
+    Content Here
+
+</div>
+```
+
+---
+
+# HTML Image Maps
+
+An **image map** allows different areas of the same image to act as different clickable links.
+
+### Step 1: Add an Image
+
+```html
+<img
+    src="computer.jpg"
+    alt="Computer"
+    usemap="#workmap">
+```
+
+### Step 2: Create the Image Map
+
+```html
+<map name="workmap">
+
+    <area
+        shape="rect"
+        coords="34,44,270,350"
+        href="computer.html"
+        alt="Computer">
+
+    <area
+        shape="circle"
+        coords="337,300,44"
+        href="phone.html"
+        alt="Phone">
+
+</map>
+```
+
+### Common Shapes
+
+| Shape | Description |
+|--------|-------------|
+| `rect` | Rectangle |
+| `circle` | Circle |
+| `poly` | Polygon (multiple points) |
+| `default` | Entire image |
+
+---
+
+# The `<picture>` Element
+
+The `<picture>` element allows you to provide multiple versions of the same image. The browser automatically chooses the most suitable image based on screen size or file format.
+
+### Example
+
+```html
+<picture>
+
+    <source
+        media="(min-width: 900px)"
+        srcset="large.jpg">
+
+    <source
+        media="(min-width: 600px)"
+        srcset="medium.jpg">
+
+    <img
+        src="small.jpg"
+        alt="Nature">
+
+</picture>
+```
+
+### Why Use `<picture>`?
+
+- Display different images on different screen sizes.
+- Improve website performance.
+- Support modern image formats like WebP.
+- Create responsive websites.
+
+---
+
 # Image Paths
 
 ## Relative Path
@@ -180,6 +286,7 @@ Points to an image using a complete URL.
 
     <h1>HTML Image Examples</h1>
 
+    <!-- Normal Image -->
     <img
         src="nature.jpg"
         alt="Beautiful Nature"
@@ -187,19 +294,28 @@ Points to an image using a complete URL.
 
     <br><br>
 
-    <img
-        src="images/logo.png"
-        alt="Company Logo"
-        width="150">
-
-    <br><br>
-
+    <!-- Image as Link -->
     <a href="https://example.com">
         <img
             src="logo.png"
             alt="Clickable Logo"
             width="120">
     </a>
+
+    <br><br>
+
+    <!-- Responsive Image -->
+    <picture>
+
+        <source
+            media="(min-width:800px)"
+            srcset="large.jpg">
+
+        <img
+            src="small.jpg"
+            alt="Responsive Image">
+
+    </picture>
 
 </body>
 </html>
@@ -214,13 +330,15 @@ Points to an image using a complete URL.
 - Optimize images to reduce file size and improve page loading speed.
 - Use relative paths for images stored within your project.
 - Specify image dimensions to reduce layout shifts while the page loads.
+- Use the `<picture>` element for responsive images when needed.
+- Use CSS for background images instead of the `<img>` element.
 
 ---
 
 # Summary
 
-| Attribute | Purpose |
-|-----------|---------|
+| Element / Attribute | Purpose |
+|---------------------|---------|
 | `<img>` | Displays an image |
 | `src` | Specifies the image path or URL |
 | `alt` | Provides alternative text for accessibility |
@@ -228,3 +346,9 @@ Points to an image using a complete URL.
 | `height` | Sets the image height |
 | `style` | Applies CSS styling to the image |
 | `<a>` + `<img>` | Makes an image clickable |
+| `background-image` | Adds an image behind an element using CSS |
+| `<map>` | Defines an image map |
+| `<area>` | Defines a clickable area inside an image map |
+| `usemap` | Associates an image with a map |
+| `<picture>` | Displays responsive images |
+| `<source>` | Specifies alternative image sources for `<picture>` |
