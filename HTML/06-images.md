@@ -1,8 +1,8 @@
 # HTML Images
 
-Images make webpages more attractive and help communicate information visually. In HTML, images are added using the `<img>` element.
+Images make web pages more attractive and help explain information visually. In HTML, images are added using the **`<img>`** element.
 
-The `<img>` element is an **empty element**, which means it does not have a closing tag.
+The `<img>` element is an **empty (self-closing) element**, meaning it **does not have a closing tag** because it doesn't contain any content.
 
 ---
 
@@ -15,28 +15,59 @@ The `<img>` element is an **empty element**, which means it does not have a clos
 ### Example
 
 ```html
-<img src="nature.jpg" alt="Beautiful Nature">
+<img src="nature.jpg" alt="Beautiful nature landscape">
+```
+
+### How it Works
+
+```
+<img
+ ├── src → Location of the image
+ └── alt → Text shown if the image cannot load
 ```
 
 ---
 
 # The `src` Attribute
 
-The `src` (source) attribute specifies the path or URL of the image.
+The **`src` (source)** attribute tells the browser where the image is located.
 
-### Image in the Same Folder
+### 1. Image in the Same Folder
 
-```html
-<img src="logo.png" alt="Logo">
+Project Structure
+
+```
+project/
+│
+├── index.html
+└── logo.png
 ```
 
-### Image Inside a Folder
-
 ```html
-<img src="images/logo.png" alt="Logo">
+<img src="logo.png" alt="Company Logo">
 ```
 
-### Image from Another Website
+---
+
+### 2. Image Inside a Folder
+
+Project Structure
+
+```
+project/
+│
+├── index.html
+└── images/
+    └── logo.png
+```
+
+```html
+<img src="images/logo.png" alt="Company Logo">
+```
+
+---
+
+### 3. Image from Another Website
 
 ```html
 <img
@@ -44,37 +75,55 @@ The `src` (source) attribute specifies the path or URL of the image.
     alt="Sample Image">
 ```
 
-> **Note:** Hotlinking images from other websites is generally discouraged because the image owner may remove or change the file. Whenever possible, use images stored in your own project.
+> **Note:** Avoid hotlinking images from other websites. If the owner removes or changes the image, it will no longer appear on your website. Store important images in your own project whenever possible.
 
 ---
 
 # The `alt` Attribute
 
-The `alt` (alternative text) attribute describes the image.
+The **`alt` (alternative text)** attribute describes the image.
 
-It is displayed when:
+It is used when:
 
-- The image cannot be loaded.
-- A screen reader is used by visually impaired users.
-- Search engines analyze the webpage.
+* The image cannot be loaded.
+* A screen reader reads the page for visually impaired users.
+* Search engines analyze your webpage.
 
 ### Example
 
 ```html
 <img
     src="cat.jpg"
-    alt="A cute white cat sitting on a chair">
+    alt="A white cat sitting on a wooden chair">
 ```
 
-> **Best Practice:** Always provide meaningful alternative text for better accessibility.
+### Good vs Bad `alt` Text
+
+❌ Poor
+
+```html
+alt="image"
+```
+
+❌ Poor
+
+```html
+alt="photo"
+```
+
+✅ Better
+
+```html
+alt="Golden Retriever puppy playing with a ball"
+```
+
+> **Best Practice:** Write meaningful descriptions instead of generic words like "image" or "photo".
 
 ---
 
-# Setting Image Width and Height
+# Setting Image Size
 
-You can specify the image dimensions using the `width` and `height` attributes.
-
-### Example
+You can control an image's size using the **`width`** and **`height`** attributes.
 
 ```html
 <img
@@ -84,15 +133,20 @@ You can specify the image dimensions using the `width` and `height` attributes.
     height="250">
 ```
 
-> The values are measured in **pixels (px)** by default.
+### Output
+
+```
+Width  → 400 pixels
+Height → 250 pixels
+```
+
+The values are measured in **pixels (px)** by default.
 
 ---
 
-# Using CSS for Image Size
+# Setting Image Size Using CSS
 
-Instead of HTML attributes, you can also use CSS.
-
-### Example
+Instead of HTML attributes, you can use CSS.
 
 ```html
 <img
@@ -101,30 +155,38 @@ Instead of HTML attributes, you can also use CSS.
     style="width:400px; height:250px;">
 ```
 
+### Which Should You Use?
+
+| HTML Attributes                         | CSS                          |
+| --------------------------------------- | ---------------------------- |
+| Defines the image's actual display size | Better for styling           |
+| Helps reduce layout shifts              | More flexible                |
+| Good for basic HTML                     | Best for responsive websites |
+
 ---
 
-# Image as a Link
+# Making an Image Clickable
 
-Wrap the image inside an anchor (`<a>`) element to make it clickable.
-
-### Example
+Wrap the `<img>` element inside an `<a>` element.
 
 ```html
 <a href="https://example.com">
+
     <img
         src="logo.png"
         alt="Website Logo"
         width="120">
+
 </a>
 ```
+
+When users click the image, they are taken to the specified webpage.
 
 ---
 
 # Animated Images (GIF)
 
-GIF images can also be displayed using the `<img>` element.
-
-### Example
+GIF files work exactly like normal images.
 
 ```html
 <img
@@ -132,13 +194,19 @@ GIF images can also be displayed using the `<img>` element.
     alt="Loading Animation">
 ```
 
+Common uses:
+
+* Loading animations
+* Small illustrations
+* Short looping animations
+
 ---
 
 # Background Images
 
-A background image is displayed behind the content of an element. It is usually added using CSS.
+Background images are usually added using **CSS**, not the `<img>` element.
 
-### Example
+### Background for the Entire Page
 
 ```html
 <body style="background-image: url('background.jpg');">
@@ -148,26 +216,164 @@ A background image is displayed behind the content of an element. It is usually 
 </body>
 ```
 
-You can also apply a background image to any HTML element.
+---
+
+### Background for a Single Element
 
 ```html
 <div
-    style="background-image: url('background.jpg');
-           width:300px;
-           height:200px;">
+    style="
+        background-image: url('background.jpg');
+        width:300px;
+        height:200px;">
 
     Content Here
 
 </div>
 ```
 
+> **Remember**
+>
+> * `<img>` displays an image as page content.
+> * `background-image` places an image behind content.
+
+---
+
+# Image Paths
+
+## Relative Path
+
+A relative path points to a file inside your project.
+
+```
+project/
+│
+├── index.html
+└── images/
+    └── photo.jpg
+```
+
+```html
+<img src="images/photo.jpg" alt="Photo">
+```
+
+---
+
+## Absolute Path
+
+An absolute path uses the complete URL.
+
+```html
+<img
+    src="https://example.com/photo.jpg"
+    alt="Photo">
+```
+
+---
+
+# Lazy Loading (HTML5)
+
+Modern browsers can delay loading images until they are about to appear on the screen.
+
+```html
+<img
+    src="nature.jpg"
+    alt="Nature"
+    loading="lazy">
+```
+
+### Benefits
+
+* Faster page loading
+* Saves internet bandwidth
+* Improves website performance
+
+---
+
+# Responsive Images Using `srcset`
+
+Different devices have different screen sizes.
+
+Instead of loading one large image for every device, you can let the browser choose the best image.
+
+```html
+<img
+    src="small.jpg"
+    srcset="
+        small.jpg 500w,
+        medium.jpg 1000w,
+        large.jpg 1500w"
+    alt="Nature">
+```
+
+The browser automatically selects the most suitable image.
+
+---
+
+# The `<picture>` Element
+
+The `<picture>` element provides multiple versions of the same image.
+
+The browser automatically chooses the best image based on screen size or supported image format.
+
+```html
+<picture>
+
+    <source
+        media="(min-width:900px)"
+        srcset="large.jpg">
+
+    <source
+        media="(min-width:600px)"
+        srcset="medium.jpg">
+
+    <img
+        src="small.jpg"
+        alt="Nature">
+
+</picture>
+```
+
+### Why Use `<picture>`?
+
+* Responsive images
+* Better performance
+* Different images for different screen sizes
+* Modern image formats (WebP, AVIF)
+
+---
+
+# The `<figure>` and `<figcaption>` Elements
+
+Use these when an image needs a caption.
+
+```html
+<figure>
+
+    <img
+        src="mountain.jpg"
+        alt="Mountain">
+
+    <figcaption>
+        Sunrise over the mountains.
+    </figcaption>
+
+</figure>
+```
+
+### Why Use Them?
+
+* Better document structure
+* Improved accessibility
+* Easier styling with CSS
+
 ---
 
 # HTML Image Maps
 
-An **image map** allows different areas of the same image to act as different clickable links.
+An image map lets different parts of an image act as different links.
 
-### Step 1: Add an Image
+## Step 1
 
 ```html
 <img
@@ -176,7 +382,7 @@ An **image map** allows different areas of the same image to act as different cl
     usemap="#workmap">
 ```
 
-### Step 2: Create the Image Map
+## Step 2
 
 ```html
 <map name="workmap">
@@ -198,79 +404,25 @@ An **image map** allows different areas of the same image to act as different cl
 
 ### Common Shapes
 
-| Shape | Description |
-|--------|-------------|
-| `rect` | Rectangle |
-| `circle` | Circle |
-| `poly` | Polygon (multiple points) |
+| Shape     | Description  |
+| --------- | ------------ |
+| `rect`    | Rectangle    |
+| `circle`  | Circle       |
+| `poly`    | Polygon      |
 | `default` | Entire image |
-
----
-
-# The `<picture>` Element
-
-The `<picture>` element allows you to provide multiple versions of the same image. The browser automatically chooses the most suitable image based on screen size or file format.
-
-### Example
-
-```html
-<picture>
-
-    <source
-        media="(min-width: 900px)"
-        srcset="large.jpg">
-
-    <source
-        media="(min-width: 600px)"
-        srcset="medium.jpg">
-
-    <img
-        src="small.jpg"
-        alt="Nature">
-
-</picture>
-```
-
-### Why Use `<picture>`?
-
-- Display different images on different screen sizes.
-- Improve website performance.
-- Support modern image formats like WebP.
-- Create responsive websites.
-
----
-
-# Image Paths
-
-## Relative Path
-
-Points to an image within your project.
-
-```html
-<img src="images/photo.jpg" alt="Photo">
-```
-
-## Absolute Path
-
-Points to an image using a complete URL.
-
-```html
-<img
-    src="https://example.com/photo.jpg"
-    alt="Photo">
-```
 
 ---
 
 # Common Image Formats
 
-| Format | Description |
-|---------|-------------|
-| `.jpg` / `.jpeg` | Best for photographs |
-| `.png` | Supports transparent backgrounds |
-| `.gif` | Supports simple animations |
-| `.svg` | Scalable vector graphics without quality loss |
-| `.webp` | Modern format with high quality and smaller file sizes |
+| Format           | Best Used For                                  |
+| ---------------- | ---------------------------------------------- |
+| `.jpg` / `.jpeg` | Photographs                                    |
+| `.png`           | Images with transparency                       |
+| `.gif`           | Simple animations                              |
+| `.svg`           | Logos, icons, illustrations                    |
+| `.webp`          | Modern compressed images                       |
+| `.avif`          | High-quality images with excellent compression |
 
 ---
 
@@ -279,9 +431,11 @@ Points to an image using a complete URL.
 ```html
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>HTML Images</title>
 </head>
+
 <body>
 
     <h1>HTML Image Examples</h1>
@@ -294,12 +448,14 @@ Points to an image using a complete URL.
 
     <br><br>
 
-    <!-- Image as Link -->
+    <!-- Clickable Image -->
     <a href="https://example.com">
+
         <img
             src="logo.png"
-            alt="Clickable Logo"
+            alt="Website Logo"
             width="120">
+
     </a>
 
     <br><br>
@@ -318,6 +474,7 @@ Points to an image using a complete URL.
     </picture>
 
 </body>
+
 </html>
 ```
 
@@ -325,30 +482,90 @@ Points to an image using a complete URL.
 
 # Best Practices
 
-- Always include the `alt` attribute.
-- Use descriptive file names (e.g., `mountain-sunset.jpg` instead of `image1.jpg`).
-- Optimize images to reduce file size and improve page loading speed.
-- Use relative paths for images stored within your project.
-- Specify image dimensions to reduce layout shifts while the page loads.
-- Use the `<picture>` element for responsive images when needed.
-- Use CSS for background images instead of the `<img>` element.
+* Always include the `alt` attribute.
+* Use meaningful image names like `mountain-sunset.jpg` instead of `image1.jpg`.
+* Compress large images before uploading.
+* Prefer **WebP** or **AVIF** for better performance.
+* Specify `width` and `height` to reduce layout shifts.
+* Use `loading="lazy"` for images below the visible area.
+* Use `<picture>` or `srcset` for responsive websites.
+* Use CSS for background images.
+* Use `<figure>` and `<figcaption>` when an image requires a caption.
+
+---
+
+# Common Beginner Mistakes
+
+❌ Missing `alt`
+
+```html
+<img src="cat.jpg">
+```
+
+✅ Correct
+
+```html
+<img
+    src="cat.jpg"
+    alt="White cat sitting on a chair">
+```
+
+---
+
+❌ Wrong File Path
+
+```html
+<img src="photo.jpg">
+```
+
+(File is actually inside the `images` folder.)
+
+✅ Correct
+
+```html
+<img src="images/photo.jpg">
+```
+
+---
+
+❌ Extremely Large Image
+
+Uploading a 10 MB image will make your website slow.
+
+✅ Compress the image before using it.
 
 ---
 
 # Summary
 
-| Element / Attribute | Purpose |
-|---------------------|---------|
-| `<img>` | Displays an image |
-| `src` | Specifies the image path or URL |
-| `alt` | Provides alternative text for accessibility |
-| `width` | Sets the image width |
-| `height` | Sets the image height |
-| `style` | Applies CSS styling to the image |
-| `<a>` + `<img>` | Makes an image clickable |
-| `background-image` | Adds an image behind an element using CSS |
-| `<map>` | Defines an image map |
-| `<area>` | Defines a clickable area inside an image map |
-| `usemap` | Associates an image with a map |
-| `<picture>` | Displays responsive images |
-| `<source>` | Specifies alternative image sources for `<picture>` |
+| Element / Attribute | Purpose                                   |
+| ------------------- | ----------------------------------------- |
+| `<img>`             | Displays an image                         |
+| `src`               | Specifies the image path or URL           |
+| `alt`               | Provides alternative text                 |
+| `width`             | Sets the image width                      |
+| `height`            | Sets the image height                     |
+| `loading="lazy"`    | Loads images only when needed             |
+| `srcset`            | Provides multiple image sizes             |
+| `<picture>`         | Displays responsive images                |
+| `<source>`          | Specifies alternative image sources       |
+| `<figure>`          | Groups an image with its caption          |
+| `<figcaption>`      | Adds a caption to an image                |
+| `<a>` + `<img>`     | Makes an image clickable                  |
+| `background-image`  | Adds a background image using CSS         |
+| `<map>`             | Defines an image map                      |
+| `<area>`            | Defines clickable regions inside an image |
+| `usemap`            | Connects an image to an image map         |
+
+---
+
+## Interview Questions
+
+1. What is the purpose of the `alt` attribute?
+2. What is the difference between relative and absolute image paths?
+3. When should you use `<picture>` instead of `<img>`?
+4. What is `loading="lazy"` and why is it useful?
+5. What is the difference between `src` and `srcset`?
+6. When would you use `<figure>` and `<figcaption>`?
+7. Which image format is best for photographs? Logos? Transparent images?
+8. What is an image map, and how does `usemap` work?

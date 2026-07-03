@@ -1,23 +1,58 @@
 # HTML Tables
 
-HTML tables are used to display data in **rows** and **columns**. They are useful for presenting structured information such as timetables, product lists, marks, and reports.
+HTML tables are used to display **structured data** in **rows** and **columns**. They are useful for presenting information that naturally fits into a grid, such as:
 
-> **Note:** Tables should be used for displaying tabular data, **not** for creating page layouts.
+* Student marks
+* Timetables
+* Product lists
+* Employee records
+* Financial reports
+
+> **Important:** Use tables only for displaying **tabular data**. Do **not** use tables to design or position webpage layouts. Modern layouts should be created using **CSS Flexbox** or **CSS Grid**.
 
 ---
 
 # Basic Table Structure
 
-A table is created using the `<table>` element and consists of:
+A table is created using the `<table>` element and contains rows and cells.
 
-- `<tr>` → Table Row
-- `<th>` → Table Header Cell
-- `<td>` → Table Data Cell
+## Table Elements
 
-### Example
+| Element   | Purpose                     |
+| --------- | --------------------------- |
+| `<table>` | Creates the table           |
+| `<tr>`    | Creates a table row         |
+| `<th>`    | Creates a table header cell |
+| `<td>`    | Creates a table data cell   |
+
+### Visual Structure
+
+```text
+<table>
+│
+├── <tr> (Header Row)
+│      ├── <th>
+│      ├── <th>
+│      └── <th>
+│
+├── <tr> (Data Row)
+│      ├── <td>
+│      ├── <td>
+│      └── <td>
+│
+└── <tr> (Another Data Row)
+       ├── <td>
+       ├── <td>
+       └── <td>
+```
+
+---
+
+# Basic Example
 
 ```html
 <table>
+
     <tr>
         <th>Name</th>
         <th>Age</th>
@@ -35,16 +70,24 @@ A table is created using the `<table>` element and consists of:
         <td>20</td>
         <td>Bengaluru</td>
     </tr>
+
 </table>
 ```
 
+### Output
+
+| Name      | Age | City      |
+| --------- | --- | --------- |
+| Navaneeth | 18  | Hyderabad |
+| Rahul     | 20  | Bengaluru |
+
 ---
 
-# Table Elements
+# Understanding Each Element
 
 ## `<table>`
 
-Defines the entire table.
+The `<table>` element is the **container** for the entire table.
 
 ```html
 <table>
@@ -52,11 +95,13 @@ Defines the entire table.
 </table>
 ```
 
+Everything related to the table must be placed inside this element.
+
 ---
 
-## `<tr>`
+## `<tr>` — Table Row
 
-Defines a table row.
+The `<tr>` element creates a **horizontal row**.
 
 ```html
 <tr>
@@ -64,99 +109,194 @@ Defines a table row.
 </tr>
 ```
 
+A table can have as many rows as needed.
+
 ---
 
-## `<th>`
+## `<th>` — Table Header Cell
 
-Defines a table header cell.
-
-By default:
-
-- Text is **bold**
-- Text is **center-aligned**
-
-Example:
+The `<th>` element defines a **header cell**.
 
 ```html
 <th>Name</th>
 ```
 
----
+By default:
 
-## `<td>`
-
-Defines a standard table data cell.
+* Text is **bold**
+* Text is **center-aligned**
+* Screen readers recognize it as a **header**, improving accessibility.
 
 Example:
+
+| Name   | Age    |
+| ------ | ------ |
+| Header | Header |
+
+---
+
+## `<td>` — Table Data Cell
+
+The `<td>` element defines a **regular data cell**.
 
 ```html
 <td>Navaneeth</td>
 ```
 
+Example:
+
+| Name      |
+| --------- |
+| Navaneeth |
+
 ---
 
-# Adding Borders
+# Adding Table Borders
 
-You can add borders using CSS.
+Tables have **no visible borders** by default.
 
-### Example
+Use CSS to add them.
 
 ```html
 <style>
-table, th, td {
+
+table,
+th,
+td {
     border: 1px solid black;
 }
+
 </style>
 ```
 
-To avoid double borders:
+### Output
+
+Every cell will have a visible border.
+
+---
+
+# `border-collapse`
+
+Without `border-collapse`, adjacent borders appear as **double borders**.
 
 ```html
-<style>
-table, th, td {
-    border: 1px solid black;
+table {
     border-collapse: collapse;
 }
-</style>
 ```
+
+### Without `border-collapse`
+
+```text
++----++----+
+| A || B |
++----++----+
+```
+
+### With `border-collapse`
+
+```text
++---------+
+| A | B |
++---------+
+```
+
+> `border-collapse: collapse;` is commonly used in modern web development.
 
 ---
 
 # Cell Padding
 
-Padding adds space **inside** table cells.
+Padding adds space **inside** a table cell.
 
 ```html
-<style>
-th, td {
+th,
+td {
     padding: 10px;
 }
-</style>
+```
+
+### Without Padding
+
+```text
+|A|
+```
+
+### With Padding
+
+```text
+|   A   |
 ```
 
 ---
 
 # Cell Spacing
 
-Spacing adds space **between** cells.
+`border-spacing` adds space **between** cells.
 
 ```html
-<style>
 table {
     border-spacing: 8px;
 }
-</style>
 ```
 
-> **Note:** `border-spacing` works only when `border-collapse: collapse;` is **not** used.
+> **Note:** `border-spacing` only works when `border-collapse: collapse;` is **not** used.
+
+---
+
+# Aligning Cell Content
+
+Use the `text-align` property to align text.
+
+```css
+td {
+    text-align: left;
+}
+```
+
+Possible values:
+
+```css
+left
+center
+right
+justify
+```
+
+Example:
+
+```css
+th {
+    text-align: center;
+}
+```
+
+---
+
+# Table Width
+
+You can control the table width using CSS.
+
+```css
+table {
+    width: 100%;
+}
+```
+
+Common values:
+
+```css
+width: 50%;
+width: 80%;
+width: 100%;
+width: 600px;
+```
 
 ---
 
 # Table Caption
 
-Use the `<caption>` element to provide a title for the table.
-
-### Example
+The `<caption>` element adds a title to the table.
 
 ```html
 <table>
@@ -165,20 +305,29 @@ Use the `<caption>` element to provide a title for the table.
         Student Details
     </caption>
 
-    ...
 </table>
 ```
 
+Output:
+
+```text
+Student Details
+
++----------------+
+| Name | Age |
++----------------+
+```
+
+Only one `<caption>` should be used per table.
+
 ---
 
-# Colspan
+# `colspan`
 
-The `colspan` attribute allows a cell to span multiple columns.
-
-### Example
+The `colspan` attribute allows a cell to span **multiple columns**.
 
 ```html
-<table border="1">
+<table>
 
 <tr>
     <th colspan="2">
@@ -194,16 +343,24 @@ The `colspan` attribute allows a cell to span multiple columns.
 </table>
 ```
 
+### Visual Representation
+
+```text
++----------------------+
+| Student Details      |
++-----------+----------+
+| Name      | Navaneeth|
++-----------+----------+
+```
+
 ---
 
-# Rowspan
+# `rowspan`
 
-The `rowspan` attribute allows a cell to span multiple rows.
-
-### Example
+The `rowspan` attribute allows a cell to span **multiple rows**.
 
 ```html
-<table border="1">
+<table>
 
 <tr>
     <td rowspan="2">Class A</td>
@@ -217,17 +374,37 @@ The `rowspan` attribute allows a cell to span multiple rows.
 </table>
 ```
 
+### Visual Representation
+
+```text
++---------+---------+
+| Class A | Rahul   |
+|         +---------+
+|         | Priya   |
++---------+---------+
+```
+
 ---
 
 # Table Sections
 
-HTML provides elements to organize different parts of a table.
+Large tables should be divided into sections.
 
-| Element | Purpose |
-|---------|---------|
-| `<thead>` | Groups the table header |
-| `<tbody>` | Groups the main table data |
-| `<tfoot>` | Groups the table footer |
+| Element   | Purpose        |
+| --------- | -------------- |
+| `<thead>` | Header section |
+| `<tbody>` | Main data      |
+| `<tfoot>` | Footer section |
+
+### Structure
+
+```text
+<table>
+│
+├── <thead>
+├── <tbody>
+└── <tfoot>
+```
 
 ### Example
 
@@ -235,13 +412,16 @@ HTML provides elements to organize different parts of a table.
 <table>
 
     <thead>
+
         <tr>
             <th>Name</th>
             <th>Marks</th>
         </tr>
+
     </thead>
 
     <tbody>
+
         <tr>
             <td>Navaneeth</td>
             <td>95</td>
@@ -251,13 +431,16 @@ HTML provides elements to organize different parts of a table.
             <td>Rahul</td>
             <td>90</td>
         </tr>
+
     </tbody>
 
     <tfoot>
+
         <tr>
             <td>Total Students</td>
             <td>2</td>
         </tr>
+
     </tfoot>
 
 </table>
@@ -270,6 +453,7 @@ HTML provides elements to organize different parts of a table.
 ```html
 <!DOCTYPE html>
 <html>
+
 <head>
 
 <title>HTML Tables</title>
@@ -310,14 +494,17 @@ caption {
     <caption>Student Details</caption>
 
     <thead>
+
         <tr>
             <th>Name</th>
             <th>Age</th>
             <th>Course</th>
         </tr>
+
     </thead>
 
     <tbody>
+
         <tr>
             <td>Navaneeth</td>
             <td>18</td>
@@ -329,40 +516,70 @@ caption {
             <td>20</td>
             <td>Information Technology</td>
         </tr>
+
     </tbody>
 
 </table>
 
 </body>
+
 </html>
 ```
 
 ---
 
+# Accessibility Best Practices
+
+For better accessibility:
+
+* Use `<th>` instead of `<td>` for headers.
+* Add a `<caption>` to describe the table.
+* Organize large tables with `<thead>`, `<tbody>`, and `<tfoot>`.
+* Avoid empty rows and columns.
+* Use CSS for styling instead of deprecated HTML attributes like `border="1"`.
+
+---
+
+# Common Mistakes
+
+❌ Using tables to create page layouts.
+
+❌ Using `<td>` instead of `<th>` for column headings.
+
+❌ Forgetting `border-collapse: collapse;`.
+
+❌ Using deprecated HTML attributes (`border`, `cellpadding`, `cellspacing`) instead of CSS.
+
+---
+
 # Best Practices
 
-- Use tables only for displaying tabular data.
-- Use `<th>` for header cells instead of `<td>`.
-- Add a `<caption>` when the table needs a title.
-- Use `<thead>`, `<tbody>`, and `<tfoot>` for better organization.
-- Style tables using CSS instead of HTML attributes like `border`.
+* Use tables only for tabular data.
+* Keep tables simple and readable.
+* Use semantic elements like `<caption>`, `<thead>`, `<tbody>`, and `<tfoot>`.
+* Style tables using CSS.
+* Make tables responsive if they contain many columns.
 
 ---
 
 # Summary
 
-| Element/Attribute | Purpose |
-|-------------------|---------|
-| `<table>` | Creates a table |
-| `<tr>` | Defines a table row |
-| `<th>` | Defines a table header cell |
-| `<td>` | Defines a table data cell |
-| `<caption>` | Adds a title to the table |
-| `colspan` | Spans a cell across multiple columns |
-| `rowspan` | Spans a cell across multiple rows |
-| `<thead>` | Groups table header content |
-| `<tbody>` | Groups main table content |
-| `<tfoot>` | Groups table footer content |
-| `border-collapse` | Merges adjacent borders into one |
-| `padding` | Adds space inside table cells |
-| `border-spacing` | Adds space between table cells |
+| Element / Property | Purpose                            |
+| ------------------ | ---------------------------------- |
+| `<table>`          | Creates a table                    |
+| `<tr>`             | Creates a table row                |
+| `<th>`             | Creates a header cell              |
+| `<td>`             | Creates a data cell                |
+| `<caption>`        | Adds a table title                 |
+| `<thead>`          | Groups header rows                 |
+| `<tbody>`          | Groups main table data             |
+| `<tfoot>`          | Groups footer rows                 |
+| `colspan`          | Makes a cell span multiple columns |
+| `rowspan`          | Makes a cell span multiple rows    |
+| `border-collapse`  | Merges adjacent borders into one   |
+| `padding`          | Adds space inside cells            |
+| `border-spacing`   | Adds space between cells           |
+| `text-align`       | Aligns text inside cells           |
+| `width`            | Sets the table width               |
+
+> **Key Takeaway:** HTML tables are designed to display structured data. Combine semantic HTML (`<thead>`, `<tbody>`, `<tfoot>`, `<caption>`) with CSS styling to create clean, accessible, and maintainable tables.
