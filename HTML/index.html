@@ -12,6 +12,7 @@
             border-collapse: collapse;
         }
     </style>
+    <link rel="icon" type="image/png" href="images/favicon.png">
 </head>
 
 <body>
@@ -259,7 +260,284 @@ Editor  : VS Code
             <td>8.1</td>
         </tr>
     </table>
+    <!-- ============================= -->
+    <!-- BOOKMARKS -->
+    <!-- ============================= -->
 
+    <h2 id="top">Top of Page</h2>
+    <p>
+        <a href="#bottom">Go to Bottom</a>
+    </p>
+    <br><br><br><br><br><br><br><br>
+    <h2 id="bottom">Bottom of Page</h2>
+    <p>
+        <a href="#top">Back to Top</a>
+    </p>
+    <!-- ============================= -->
+    <!-- HTML ATTRIBUTES -->
+    <!-- ============================= -->
+
+    <p title="Tooltip Example">
+        Hover over this text.
+    </p>
+
+    <p style="color: blue;">
+        This paragraph uses the style attribute.
+    </p>
+
+    <p lang="en">
+        This paragraph is in English.
+    </p>
+
+    <input
+        type="text"
+        placeholder="Enter your name">
+    <hr>
+    <!-- ============================= -->
+    <!-- HTML COLORS -->
+    <!-- ============================= -->
+
+    <h3 style="background-color: orange;">
+        Background Color
+    </h3>
+
+    <p style="color: crimson;">
+        Text Color
+    </p>
+
+    <p style="border:3px solid royalblue;">
+        Border Color
+    </p>
+
+    <p style="background-color:#00b894;">
+        HEX Color
+    </p>
+
+    <p style="background-color:rgb(255,200,0);">
+        RGB Color
+    </p>
+
+    <p style="background-color:hsl(200,80%,60%);">
+        HSL Color
+    </p>
+    <hr>
+
+    <table border="1">
+    <tr>
+        <th colspan="2">
+            Student Information
+        </th>
+    </tr>
+    <tr>
+        <td>Name</td>
+        <td>Navaneeth</td>
+    </tr>
+    </table>
+    <hr>
+    <table border="1">
+
+<tr>
+    <th>Name</th>
+    <th>Subjects</th>
+</tr>
+
+<tr>
+    <td rowspan="2">Navaneeth</td>
+    <td>HTML</td>
+</tr>
+
+<tr>
+    <td>CSS</td>
+</tr>
+
+</table>
+
+<hr>
+<style>
+
+table{
+    width:60%;
+}
+
+table,th,td{
+    border:1px solid black;
+    border-collapse:collapse;
+}
+
+th{
+    background-color:lightgray;
+}
+
+th,td{
+    padding:10px;
+    text-align:center;
+}
+
+tr:nth-child(even){
+    background-color:#f2f2f2;
+}
+
+</style>
+<!-- ============================= -->
+<!-- BLOCK & INLINE ELEMENTS -->
+<!-- ============================= -->
+
+<h2>Block Elements</h2>
+
+<div style="background-color:lightblue;">
+    I am a DIV (Block Element)
+</div>
+
+<p style="background-color:lightgreen;">
+    I am a Paragraph (Block Element)
+</p>
+
+<h2>Inline Elements</h2>
+
+<span style="background-color:yellow;">
+    Span
+</span>
+
+<strong>
+    Strong
+</strong>
+
+<a href="#">
+    Link
+</a>
+
+<hr>
+<!-- ============================= -->
+<!-- DIV -->
+<!-- ============================= -->
+
+<div
+style="
+background-color:lightgray;
+padding:20px;
+border:2px solid black;">
+
+<h2>About Me</h2>
+
+<p>
+I am learning HTML.
+</p>
+
+</div>
+
+<hr>
+<style>
+
+.note{
+    color:blue;
+    background-color:#eef;
+    padding:10px;
+}
+
+</style>
+
+<div class="note">
+    HTML is easy to learn.
+</div>
+
+<p class="note">
+    CSS makes webpages beautiful.
+</p>
+
+<hr>
+<style>
+
+#special{
+    color:red;
+    font-size:24px;
+}
+
+</style>
+
+<h2 id="special">
+    This uses an ID.
+</h2>
+
+<hr>
+<!-- ============================= -->
+<!-- BUTTONS -->
+<!-- ============================= -->
+
+<button type="button">
+    Normal Button
+</button>
+
+<button
+onclick="alert('Welcome!')">
+
+Show Alert
+
+</button>
+
+<button
+onclick="document.location='about.html'">
+
+Go to About Page
+
+</button>
+
+<hr>
+<!-- ============================= -->
+<!-- IFRAME -->
+<!-- ============================= -->
+
+<iframe
+
+src="about.html"
+
+title="About Page"
+
+width="500"
+
+height="250">
+
+</iframe>
+
+<br><br>
+
+<iframe
+
+src="about.html"
+
+style="
+width:500px;
+height:250px;
+border:2px solid blue;"
+
+title="Styled Iframe">
+
+</iframe>
+
+<br><br>
+
+<iframe
+
+src="home.html"
+
+name="myframe"
+
+width="500"
+
+height="250"
+
+title="Target Frame">
+
+</iframe>
+
+<br><br>
+
+<a href="contact.html" target="myframe">
+
+Open Contact Page
+
+</a>
+
+<hr>
 </body>
 
 </html>
