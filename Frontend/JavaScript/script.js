@@ -43,7 +43,7 @@ location();
 hobbies();
 status();
 
-import readline from 'readline/promises';
+import readline from "readline/promises";
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -51,14 +51,16 @@ const rl = readline.createInterface({
 });
 
 const userData = await rl.question("Please enter your age: ");
-const age = Number(userData); 
-console.log(`Age : ${age}`);
-if (age === 20) {
-    console.log(`User entered: ${userData}`);
-} else if (age > 20) {
-    console.log("Not Eligible");
+const age = Number(userData);
+
+console.log(`Age: ${age}`);
+
+if (Number.isNaN(age)) {
+    console.log("Please enter a valid number.");
+} else if (age >= 20) {
+    console.log("Eligible");
 } else {
-    console.log("Failed to enter age please re-enter!");
+    console.log("Not Eligible");
 }
 
 rl.close();
