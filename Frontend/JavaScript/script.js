@@ -43,3 +43,22 @@ location();
 hobbies();
 status();
 
+import readline from 'readline/promises';
+
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+const userData = await rl.question("Please enter your age: ");
+const age = Number(userData); 
+console.log(`Age : ${age}`);
+if (age === 20) {
+    console.log(`User entered: ${userData}`);
+} else if (age > 20) {
+    console.log("Not Eligible");
+} else {
+    console.log("Failed to enter age please re-enter!");
+}
+
+rl.close();
