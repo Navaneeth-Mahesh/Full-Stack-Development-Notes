@@ -1,8 +1,6 @@
 # MongoDB CRUD Operations (Part 1)
 # insertOne(), insertMany(), find(), findOne()
 
-> 📌 Beginner Friendly | Depth Explanation | Easy Language | Interview Ready
-
 ---
 
 # What is CRUD?
