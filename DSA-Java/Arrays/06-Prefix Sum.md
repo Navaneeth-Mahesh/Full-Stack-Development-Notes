@@ -1,465 +1,404 @@
-# 6. Prefix Sum
+6. Prefix Sum
+Prefix Sum is a technique used to precompute cumulative sums so that we can answer sum-related queries efficiently.
 
-## 1. Prefix Sum
+Instead of repeatedly calculating the sum of elements, we calculate a prefix/suffix array once and reuse it.
 
-Prefix Sum is a technique used to quickly calculate the sum of elements in an array.
+1. Prefix Sum
+A prefix sum at index i represents the sum of all elements from index 0 to i.
 
-Instead of calculating the sum repeatedly, we preprocess the array and store the cumulative sum.
-
-### Example
-
-```text
+Example
 Array:
-[2, 4, 6, 8, 10]
 
-Prefix Sum:
+arr = [2, 4, 6, 8, 10]
+Prefix sums:
+
 [2, 6, 12, 20, 30]
-```
+Because:
 
-Formula:
-
-```text
+prefix[0] = 2
+prefix[1] = 2 + 4 = 6
+prefix[2] = 2 + 4 + 6 = 12
+prefix[3] = 2 + 4 + 6 + 8 = 20
+prefix[4] = 2 + 4 + 6 + 8 + 10 = 30
+Formula
 prefix[i] = prefix[i - 1] + arr[i]
-```
-
 For the first element:
 
-```text
 prefix[0] = arr[0]
-```
+Java
+int[] arr = {2, 4, 6, 8, 10};
 
-### JavaScript
+int[] prefix = new int[arr.length];
 
-```js
-function prefixSum(arr) {
-    const prefix = new Array(arr.length);
+prefix[0] = arr[0];
 
-    prefix[0] = arr[0];
-
-    for (let i = 1; i < arr.length; i++) {
-        prefix[i] = prefix[i - 1] + arr[i];
-    }
-
-    return prefix;
+for (int i = 1; i < arr.length; i++) {
+    prefix[i] = prefix[i - 1] + arr[i];
 }
+Result:
 
-console.log(prefixSum([2, 4, 6, 8, 10]));
-// [2, 6, 12, 20, 30]
-```
-
-### Time Complexity
-
-```text
+prefix = [2, 6, 12, 20, 30]
+Complexity
 Time:  O(n)
 Space: O(n)
-```
+2. Suffix Sum
+A suffix sum at index i represents the sum of all elements from index i to the end of the array.
 
----
-
-## 2. Suffix Sum
-
-Suffix Sum is similar to Prefix Sum, but we calculate the sum from **right to left**.
-
-### Example
-
-```text
-Array:
-[2, 4, 6, 8, 10]
-
-Suffix Sum:
-[30, 28, 24, 18, 10]
-```
-
-Formula:
-
-```text
-suffix[i] = suffix[i + 1] + arr[i]
-```
-
-### JavaScript
-
-```js
-function suffixSum(arr) {
-    const suffix = new Array(arr.length);
-
-    suffix[arr.length - 1] = arr[arr.length - 1];
-
-    for (let i = arr.length - 2; i >= 0; i--) {
-        suffix[i] = suffix[i + 1] + arr[i];
-    }
-
-    return suffix;
-}
-
-console.log(suffixSum([2, 4, 6, 8, 10]));
-// [30, 28, 24, 18, 10]
-```
-
-### Time Complexity
-
-```text
-Time:  O(n)
-Space: O(n)
-```
-
----
-
-## 3. Prefix Sum Array
-
-A Prefix Sum Array stores the cumulative sum up to every index.
-
-For:
-
-```text
-arr = [3, 5, 2, 7, 4]
-```
-
-The prefix sum array is:
-
-```text
-prefix = [3, 8, 10, 17, 21]
-```
-
-Meaning:
-
-```text
-prefix[0] = 3
-prefix[1] = 3 + 5 = 8
-prefix[2] = 3 + 5 + 2 = 10
-prefix[3] = 3 + 5 + 2 + 7 = 17
-prefix[4] = 3 + 5 + 2 + 7 + 4 = 21
-```
-
-### Why use Prefix Sum?
-
-It allows us to answer range-sum queries in **O(1)** after **O(n)** preprocessing.
-
----
-
-# 4. Range Sum Queries
-
-A range sum query asks for the sum of elements between two indices.
-
-For:
-
-```text
+Example
 arr = [2, 4, 6, 8, 10]
-```
+Suffix sums:
 
-Suppose we want:
+[30, 28, 24, 18, 10]
+Because:
 
-```text
-sum(1, 3)
-```
+suffix[4] = 10
 
+suffix[3] = 8 + 10 = 18
+
+suffix[2] = 6 + 8 + 10 = 24
+
+suffix[1] = 4 + 6 + 8 + 10 = 28
+
+suffix[0] = 2 + 4 + 6 + 8 + 10 = 30
+Formula
+suffix[i] = suffix[i + 1] + arr[i]
+Java
+int[] arr = {2, 4, 6, 8, 10};
+
+int n = arr.length;
+
+int[] suffix = new int[n];
+
+suffix[n - 1] = arr[n - 1];
+
+for (int i = n - 2; i >= 0; i--) {
+    suffix[i] = suffix[i + 1] + arr[i];
+}
+Result:
+
+suffix = [30, 28, 24, 18, 10]
+Complexity
+Time:  O(n)
+Space: O(n)
+3. Prefix Sum Array
+A prefix sum array is simply an array containing the cumulative sums of the original array.
+
+For:
+
+arr = [3, 1, 4, 2, 5]
+Prefix sum array:
+
+[3, 4, 8, 10, 15]
+Visualization:
+
+Index:   0   1   2   3   4
+         ↓   ↓   ↓   ↓   ↓
+
+Array:   3   1   4   2   5
+
+Prefix:  3   4   8  10  15
+The important property is:
+
+prefix[i] = sum(arr[0 ... i])
+This allows us to calculate range sums quickly.
+
+4. Range Sum Queries
+Suppose we have:
+
+arr = [2, 4, 6, 8, 10]
+And we want:
+
+sum from index 1 to 3
 That means:
 
-```text
 4 + 6 + 8 = 18
-```
+Using a prefix array:
 
-Using Prefix Sum:
-
-```text
 prefix = [2, 6, 12, 20, 30]
-```
+We can calculate:
 
-Formula:
-
-```text
-sum(L, R) = prefix[R] - prefix[L - 1]
-```
-
+rangeSum(L, R) = prefix[R] - prefix[L - 1]
 Therefore:
 
-```text
+rangeSum(1, 3)
+
+= prefix[3] - prefix[0]
+
+= 20 - 2
+
+= 18
+Special Case
+If:
+
+L = 0
+there is no prefix[L - 1].
+
+So:
+
+rangeSum(0, R) = prefix[R]
+Java
+static int rangeSum(int[] prefix, int left, int right) {
+
+    if (left == 0) {
+        return prefix[right];
+    }
+
+    return prefix[right] - prefix[left - 1];
+}
+Why Prefix Sum?
+Without prefix sum:
+
+Each query → O(n)
+With prefix sum:
+
+Build prefix → O(n)
+
+Each query → O(1)
+This is extremely useful when there are many range-sum queries.
+
+5. Subarray Sum Using Prefix Sum
+Prefix sum can also help us calculate the sum of any subarray.
+
+For:
+
+arr = [2, 4, 6, 8, 10]
+Suppose we need:
+
+sum(1, 3)
+The subarray is:
+
+[4, 6, 8]
+Using prefix sum:
+
+prefix = [2, 6, 12, 20, 30]
+Formula:
+
+sum(L, R) = prefix[R] - prefix[L - 1]
+Therefore:
+
 sum(1, 3)
 = prefix[3] - prefix[0]
 = 20 - 2
 = 18
-```
+Alternative: Prefix Sum with Extra Zero
+A very useful technique is creating a prefix array of size n + 1.
 
-### Special Case: L = 0
+arr = [2, 4, 6, 8, 10]
 
-If the range starts from index `0`:
+prefix = [0, 2, 6, 12, 20, 30]
+Now:
 
-```text
-sum(0, R) = prefix[R]
-```
+prefix[i] = sum of first i elements
+The range sum becomes:
 
-### JavaScript
-
-```js
-function rangeSum(arr, L, R) {
-    const prefix = new Array(arr.length);
-
-    prefix[0] = arr[0];
-
-    for (let i = 1; i < arr.length; i++) {
-        prefix[i] = prefix[i - 1] + arr[i];
-    }
-
-    if (L === 0) {
-        return prefix[R];
-    }
-
-    return prefix[R] - prefix[L - 1];
-}
-
-console.log(rangeSum([2, 4, 6, 8, 10], 1, 3));
-// 18
-```
-
-### Complexity
-
-```text
-Preprocessing: O(n)
-Each query:    O(1)
-```
-
-This is useful when there are **many range-sum queries**.
-
----
-
-# 5. Subarray Sum Using Prefix Sum
-
-A subarray is a **contiguous part** of an array.
-
+sum(L, R) = prefix[R + 1] - prefix[L]
 Example:
 
-```text
-[2, 4, 6, 8, 10]
-```
+L = 1
+R = 3
 
-Some subarrays:
+sum = prefix[4] - prefix[1]
 
-```text
-[2, 4]
-[4, 6, 8]
-[6, 8]
-[8, 10]
-```
+    = 20 - 2
 
-Prefix Sum can calculate the sum of any subarray efficiently.
+    = 18
+Java
+static int[] buildPrefix(int[] arr) {
 
-For:
+    int n = arr.length;
 
-```text
-arr = [2, 4, 6, 8, 10]
-```
+    int[] prefix = new int[n + 1];
 
-Prefix:
+    for (int i = 0; i < n; i++) {
+        prefix[i + 1] = prefix[i] + arr[i];
+    }
 
-```text
-[2, 6, 12, 20, 30]
-```
+    return prefix;
+}
+Range sum:
 
-To find:
+static int rangeSum(int[] prefix, int left, int right) {
 
-```text
-sum(2, 4)
-```
+    return prefix[right + 1] - prefix[left];
+}
+This version is often easier to use because it eliminates special handling for left == 0.
 
-Use:
+6. Prefix Sum + HashMap
+This is one of the most important Prefix Sum patterns in DSA.
 
-```text
-prefix[4] - prefix[1]
-= 30 - 6
-= 24
-```
+It is commonly used to solve:
 
-Therefore:
+Find the number of subarrays whose sum is equal to k.
 
-```text
-6 + 8 + 10 = 24
-```
-
-### Formula
-
-```text
-subarraySum(L, R) =
-    prefix[R] - prefix[L - 1]
-```
-
----
-
-# 6. Prefix Sum + HashMap
-
-Prefix Sum + HashMap is a very important DSA pattern.
-
-It is commonly used to solve problems such as:
-
-* Subarray Sum Equals K
-* Count subarrays with a given sum
-* Longest subarray with a given sum
-* Subarray with sum 0
-
-## Core Idea
-
-Suppose:
-
-```text
-prefix[i] = current prefix sum
-```
-
-We want a subarray whose sum is `K`.
-
-If:
-
-```text
-currentPrefix - previousPrefix = K
-```
-
-Then:
-
-```text
-previousPrefix = currentPrefix - K
-```
-
-So we store previous prefix sums inside a HashMap.
-
-### Example
-
-```text
+Example
 arr = [1, 2, 3]
-K = 3
-```
+k = 3
+Subarrays with sum 3:
 
-Prefix sums:
+[1, 2]
+[3]
+Answer:
 
-```text
-1
-3
-6
-```
+2
+Key Idea
+Suppose the current prefix sum is:
 
-At prefix `3`:
+currentSum
+We need some previous prefix sum:
 
-```text
-3 - 3 = 0
-```
+previousSum
+such that:
 
-We have previously seen prefix sum `0`.
+currentSum - previousSum = k
+Therefore:
+
+previousSum = currentSum - k
+So while traversing the array:
+
+Calculate current prefix sum.
+Check whether currentSum - k exists in the HashMap.
+If it exists, those previous positions create subarrays with sum k.
+Store the current prefix sum in the HashMap.
+Example
+arr = [1, 2, 3]
+k = 3
+Start:
+
+sum = 0
+map = {0 : 1}
+count = 0
+Element 1
+sum = 1
+
+needed = sum - k
+       = 1 - 3
+       = -2
+-2 doesn’t exist.
+
+Store:
+
+map = {0:1, 1:1}
+Element 2
+sum = 3
+
+needed = 3 - 3
+       = 0
+0 exists.
+
+Therefore we found:
+
+[1, 2]
+Count:
+
+count = 1
+Element 3
+sum = 6
+
+needed = 6 - 3
+       = 3
+3 exists.
 
 Therefore:
 
-```text
-[1, 2]
-```
+[3]
+Count:
 
-has sum `3`.
+count = 2
+Answer:
 
-### JavaScript
+2
+Java
+import java.util.HashMap;
 
-```js
-function subarraySum(arr, k) {
-    const map = new Map();
+static int subarraySum(int[] arr, int k) {
 
-    // Prefix sum 0 exists once
-    map.set(0, 1);
+    HashMap<Integer, Integer> map = new HashMap<>();
 
-    let prefix = 0;
-    let count = 0;
+    map.put(0, 1);
 
-    for (const num of arr) {
-        prefix += num;
+    int sum = 0;
+    int count = 0;
 
-        const required = prefix - k;
+    for (int num : arr) {
 
-        if (map.has(required)) {
-            count += map.get(required);
+        sum += num;
+
+        int needed = sum - k;
+
+        if (map.containsKey(needed)) {
+            count += map.get(needed);
         }
 
-        map.set(prefix, (map.get(prefix) || 0) + 1);
+        map.put(sum, map.getOrDefault(sum, 0) + 1);
     }
 
     return count;
 }
-
-console.log(subarraySum([1, 2, 3], 3));
-// 2
-```
-
-The two subarrays are:
-
-```text
-[1, 2]
-[3]
-```
-
-### Complexity
-
-```text
+Complexity
 Time:  O(n)
 Space: O(n)
-```
+Important Pattern
+Remember:
 
----
+currentPrefixSum - requiredPrefixSum = target
+Therefore:
 
-# 7. Equilibrium Index
+requiredPrefixSum = currentPrefixSum - target
+This pattern appears frequently in subarray problems.
 
-An **Equilibrium Index** is an index where:
+7. Equilibrium Index
+An equilibrium index is an index where:
 
-```text
 sum of elements on the left
 =
 sum of elements on the right
-```
+The element at the equilibrium index is usually not included in either side.
 
-Example:
-
-```text
+Example
 arr = [1, 3, 5, 2, 2]
-```
+Check index 2:
 
-At index `2`:
-
-```text
-Left:
+Left side:
 1 + 3 = 4
 
-Right:
+Right side:
 2 + 2 = 4
-```
-
 Therefore:
 
-```text
 Equilibrium Index = 2
-```
+Using Total Sum
+We don’t actually need two arrays.
 
-## Using Prefix Sum
+First calculate:
 
-We can calculate the total sum first.
+totalSum
+Then traverse the array while maintaining:
 
-Then maintain a `leftSum`.
+leftSum
+At index i:
 
-At every index:
-
-```text
 rightSum = totalSum - leftSum - arr[i]
-```
-
 If:
 
-```text
-leftSum === rightSum
-```
+leftSum == rightSum
+then i is an equilibrium index.
 
-then we found the equilibrium index.
+Java
+static int equilibriumIndex(int[] arr) {
 
-### JavaScript
+    int totalSum = 0;
 
-```js
-function equilibriumIndex(arr) {
-    const totalSum = arr.reduce((sum, num) => sum + num, 0);
+    for (int num : arr) {
+        totalSum += num;
+    }
 
-    let leftSum = 0;
+    int leftSum = 0;
 
-    for (let i = 0; i < arr.length; i++) {
-        const rightSum = totalSum - leftSum - arr[i];
+    for (int i = 0; i < arr.length; i++) {
 
-        if (leftSum === rightSum) {
+        int rightSum = totalSum - leftSum - arr[i];
+
+        if (leftSum == rightSum) {
             return i;
         }
 
@@ -468,66 +407,58 @@ function equilibriumIndex(arr) {
 
     return -1;
 }
-
-console.log(equilibriumIndex([1, 3, 5, 2, 2]));
-// 2
-```
-
-### Complexity
-
-```text
+Complexity
 Time:  O(n)
 Space: O(1)
-```
+8. Pivot Index
+A pivot index is very similar to an equilibrium index.
 
----
+At index i:
 
-# 8. Pivot Index
-
-Pivot Index is very similar to Equilibrium Index.
-
-A pivot index is an index where:
-
-```text
-sum of elements to the left
+sum of elements before i
 =
-sum of elements to the right
-```
+sum of elements after i
+Example:
 
-For:
-
-```text
 arr = [1, 7, 3, 6, 5, 6]
-```
+At index 3:
 
-At index `3`:
-
-```text
 Left:
 1 + 7 + 3 = 11
 
 Right:
 5 + 6 = 11
-```
-
 Therefore:
 
-```text
 Pivot Index = 3
-```
+Difference Between Pivot Index and Equilibrium Index
+In most DSA problems, they are essentially the same concept.
 
-### JavaScript
+Equilibrium Index
+        ↓
+Left Sum == Right Sum
 
-```js
-function pivotIndex(arr) {
-    const totalSum = arr.reduce((sum, num) => sum + num, 0);
+Pivot Index
+        ↓
+Left Sum == Right Sum
+The main difference is terminology depending on the problem/platform.
 
-    let leftSum = 0;
+Java
+static int pivotIndex(int[] arr) {
 
-    for (let i = 0; i < arr.length; i++) {
-        const rightSum = totalSum - leftSum - arr[i];
+    int totalSum = 0;
 
-        if (leftSum === rightSum) {
+    for (int num : arr) {
+        totalSum += num;
+    }
+
+    int leftSum = 0;
+
+    for (int i = 0; i < arr.length; i++) {
+
+        int rightSum = totalSum - leftSum - arr[i];
+
+        if (leftSum == rightSum) {
             return i;
         }
 
@@ -536,62 +467,112 @@ function pivotIndex(arr) {
 
     return -1;
 }
-
-console.log(pivotIndex([1, 7, 3, 6, 5, 6]));
-// 3
-```
-
-### Complexity
-
-```text
+Complexity
 Time:  O(n)
 Space: O(1)
-```
+Prefix Sum Patterns You Should Remember
+Pattern 1: Build Prefix Sum
+prefix[i] = prefix[i - 1] + arr[i]
+Pattern 2: Range Sum
+sum(L, R) = prefix[R] - prefix[L - 1]
+Or with an extra zero:
 
----
+sum(L, R) = prefix[R + 1] - prefix[L]
+Pattern 3: Subarray Sum = K
+Use:
 
-# Prefix Sum Cheat Sheet
+HashMap<PrefixSum, Frequency>
+And look for:
 
-| Concept           | Main Idea                        | Complexity             |
-| ----------------- | -------------------------------- | ---------------------- |
-| Prefix Sum        | Cumulative sum from left         | O(n)                   |
-| Suffix Sum        | Cumulative sum from right        | O(n)                   |
-| Prefix Sum Array  | Store cumulative sums            | O(n)                   |
-| Range Sum         | `prefix[R] - prefix[L-1]`        | O(1) per query         |
-| Subarray Sum      | Difference of prefix sums        | O(1) with prefix array |
-| Prefix + HashMap  | Find/count subarrays efficiently | O(n)                   |
-| Equilibrium Index | Left sum = right sum             | O(n)                   |
-| Pivot Index       | Left sum = right sum             | O(n)                   |
+currentSum - k
+Pattern 4: Equilibrium / Pivot
+Calculate:
 
-## Important Patterns to Remember
+rightSum = totalSum - leftSum - arr[i]
+Then check:
 
-```text
-1. Prefix:
-   prefix[i] = prefix[i - 1] + arr[i]
+leftSum == rightSum
+Quick Comparison
+Topic
 
-2. Range Sum:
-   prefix[R] - prefix[L - 1]
+Main Idea
 
-3. Subarray Sum:
-   currentPrefix - previousPrefix = target
+Typical Complexity
 
-4. HashMap:
-   Store previous prefix sums
+Prefix Sum
 
-5. Equilibrium / Pivot:
-   rightSum = totalSum - leftSum - arr[i]
-```
+Sum from beginning
 
-### Most Important Formula
+O(n)
 
-```text
-Subarray Sum = PrefixSum[R] - PrefixSum[L - 1]
-```
+Suffix Sum
 
-And for Prefix Sum + HashMap:
+Sum from end
 
-```text
-requiredPrefix = currentPrefix - target
-```
+O(n)
 
-These two formulas are the **core patterns** you should remember for most Prefix Sum problems.
+Prefix Sum Array
+
+Store cumulative sums
+
+O(n)
+
+Range Sum
+
+Calculate subarray sum quickly
+
+O(1) per query
+
+Subarray Sum
+
+Find sum of a subarray
+
+O(1) with prefix lookup
+
+Prefix Sum + HashMap
+
+Find/count subarrays with target sum
+
+O(n)
+
+Equilibrium Index
+
+Left sum = right sum
+
+O(n)
+
+Pivot Index
+
+Left sum = right sum
+
+O(n)
+
+Most Important Mental Model
+Think of Prefix Sum as remembering everything that has been accumulated so far.
+
+Original:
+[2, 4, 6, 8, 10]
+
+Prefix:
+[2, 6, 12, 20, 30]
+Instead of repeatedly doing:
+
+2 + 4 + 6 + 8
+we can simply do:
+
+prefix[3] = 20
+And for a range:
+
+L -------- R
+↓           ↓
+
+[2, 4, 6, 8, 10]
+    └───────┘
+
+prefix[R] - prefix[L-1]
+The three patterns you should master first are:
+
+1. Prefix Sum → Range Sum
+2. Prefix Sum + HashMap → Subarray Sum = K
+3. Prefix Sum → Equilibrium / Pivot Index
+These patterns cover a large number of array problems.
