@@ -415,3 +415,21 @@ int[] arr = {10, 20, 30, 40, 50, 60, 70, 80, 90};
 
 int target = 80;
 ```
+
+
+Subtopics 
+
+Basic Binary Search       
+        ↓
+Iterative implementation  
+        ↓
+5–10 practice problems
+        ↓
+Recursive Binary Search
+        ↓
+First / Last Occurrence
+        ↓
+Lower / Upper Bound
+        ↓
+Binary Search on Answer   ← Advanced
+
