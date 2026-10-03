@@ -1,7 +1,7 @@
 public class Duplicate{
     public static void main(String[] args){
-        int[] arr = {10, 20, 20, 20, 30, 40, 50};
-        int target = 20;
+        int[] arr = {5, 10, 10, 10, 10, 20, 30, 40};
+        int target = 10;
         int low = 0;
         int high = arr.length - 1;
         int result = -1;
@@ -18,6 +18,6 @@ public class Duplicate{
                 high = mid - 1;
             }
         }
-        System.out.println("first occurance : " + result);
+        System.out.println("first occurence : " + result);
     }
 }
