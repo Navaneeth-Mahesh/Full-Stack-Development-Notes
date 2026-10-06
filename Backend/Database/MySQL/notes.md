@@ -1,1 +1,1 @@
-Updated soon 
+SQL: Structued Query Language
